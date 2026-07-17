@@ -123,9 +123,9 @@ const freeWorks: Artwork[] = [
     format: "Malba",
   },
   {
-    title: "Ivo",
+    title: "lept a tužka",
     src: "/artworks/volnatvorba/ivo.jpeg",
-    alt: "Portrét Ivo",
+    alt: "Portrét",
     format: "Portrét",
   },
   {
@@ -147,7 +147,7 @@ const freeWorks: Artwork[] = [
     format: "Kresba",
   },
   {
-    title: "Vtělenie",
+    title: "Vtělení",
     src: "/artworks/volnatvorba/vtelenie.jpg",
     alt: "Volná figurální tvorba",
     format: "Figura",
