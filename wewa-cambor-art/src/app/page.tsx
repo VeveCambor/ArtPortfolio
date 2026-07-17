@@ -14,9 +14,9 @@ type Artwork = {
 
 const illustrationWorks: Artwork[] = [
   {
-    title: "SPAD",
+    title: "SPAD - návrh",
     src: "/artworks/ilustrace/Spad1-obalka.jpeg",
-    alt: "Obálková ilustrace SPAD",
+    alt: "Obálková ilustrace SPAD - návrh",
     format: "Obálková ilustrace",
     className: "md:col-span-2 lg:col-span-2",
     imageClassName: "object-cover",
@@ -217,6 +217,20 @@ const graphicWorks: Artwork[] = [
   },
 ];
 
+const navigationLinks = [
+  { href: "#ilustrace", label: "Ilustrace" },
+  { href: "#volna-tvorba", label: "Volná tvorba" },
+  { href: "#grafika", label: "Grafika" },
+  { href: "#o-autorce", label: "O autorce" },
+  { href: "#kurzy", label: "Kurzy" },
+  {
+    href: "https://www.etsy.com/shop/WewaCamborArt?ref=dashboard-header",
+    label: "Etsy",
+    external: true,
+  },
+  { href: "#contact", label: "Kontakt" },
+];
+
 function getWatermarkedSrc(src: string) {
   return src.replace("/artworks/", "/artworks-watermarked/");
 }
@@ -232,7 +246,7 @@ function ArtworkCard({
     <button
       type="button"
       onClick={onOpen}
-      className={`group relative min-h-[320px] overflow-hidden rounded-4xl border border-white/10 bg-[#14111f]/55 text-left shadow-2xl shadow-black/28 outline-none transition hover:-translate-y-1 hover:border-amber-100/35 focus-visible:ring-2 focus-visible:ring-amber-100/70 ${work.className ?? ""}`}
+      className={`gallery-card group relative min-h-[320px] cursor-pointer overflow-hidden rounded-4xl border border-white/10 bg-[#14111f]/55 text-left shadow-2xl shadow-black/28 outline-none transition hover:-translate-y-1 hover:border-amber-100/35 focus-visible:ring-2 focus-visible:ring-amber-100/70 ${work.className ?? ""}`}
     >
       <Image
         src={getWatermarkedSrc(work.src)}
@@ -272,7 +286,7 @@ function GallerySection({
   return (
     <section
       id={id}
-      className="relative px-6 py-24 sm:px-10 lg:px-16"
+      className="fade-in-up relative px-6 py-24 sm:px-10 lg:px-16"
     >
       <div className="absolute inset-x-0 top-0 -z-10 h-64 bg-linear-to-b from-white/2.5 to-transparent" />
       <div className="mx-auto max-w-7xl">
@@ -334,7 +348,7 @@ function GalleryLightbox({
         type="button"
         aria-label="Zavřít náhled"
         onClick={onClose}
-        className="absolute right-5 top-5 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/20"
+        className="absolute right-5 top-5 cursor-pointer rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/20"
       >
         Zavřít
       </button>
@@ -343,7 +357,7 @@ function GalleryLightbox({
         type="button"
         aria-label="Předchozí obrázek"
         onClick={() => onMove(-1)}
-        className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-white/10 text-3xl text-white transition hover:bg-white/20"
+        className="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-white/10 text-3xl text-white transition hover:bg-white/20"
       >
         ‹
       </button>
@@ -373,7 +387,7 @@ function GalleryLightbox({
         type="button"
         aria-label="Další obrázek"
         onClick={() => onMove(1)}
-        className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-white/10 text-3xl text-white transition hover:bg-white/20"
+        className="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-white/10 text-3xl text-white transition hover:bg-white/20"
       >
         ›
       </button>
@@ -382,6 +396,7 @@ function GalleryLightbox({
 }
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [lightbox, setLightbox] = useState<{
     works: Artwork[];
     index: number;
@@ -410,44 +425,76 @@ export default function Home() {
         <div className="absolute left-1/2 top-20 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-violet-500/12 blur-3xl" />
         <div className="absolute bottom-10 right-8 -z-10 h-80 w-80 rounded-full bg-amber-500/8 blur-3xl" />
 
-        <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-[#120f20]/55 px-5 py-4 shadow-2xl shadow-black/30 backdrop-blur">
+        <nav className="fade-in-up relative z-30 mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-[#120f20]/55 px-5 py-4 shadow-2xl shadow-black/30 backdrop-blur">
           <a
             href="#"
             className="text-sm font-semibold uppercase tracking-[0.35em] text-stone-200"
+            onClick={() => setMobileMenuOpen(false)}
           >
             Wewa Čambor
           </a>
           <div className="hidden items-center gap-6 text-sm text-stone-300 md:flex">
-            <a className="transition hover:text-white" href="#ilustrace">
-              Ilustrace
-            </a>
-            <a className="transition hover:text-white" href="#volna-tvorba">
-              Volná tvorba
-            </a>
-            <a className="transition hover:text-white" href="#grafika">
-              Grafika
-            </a>
-            <a className="transition hover:text-white" href="#o-autorce">
-              O autorce
-            </a>
-            <a className="transition hover:text-white" href="#kurzy">
-              Kurzy
-            </a>
-            <a className="transition hover:text-white" href="#contact">
-              Kontakt
-            </a>
+            {navigationLinks.map((link) => (
+              <a
+                key={link.href}
+                className="transition hover:text-white"
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noreferrer" : undefined}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
+          <button
+            type="button"
+            aria-label={mobileMenuOpen ? "Zavřít menu" : "Otevřít menu"}
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/12 bg-white/8 text-stone-100 transition hover:bg-white/14 md:hidden"
+          >
+            <span className="sr-only">
+              {mobileMenuOpen ? "Zavřít menu" : "Otevřít menu"}
+            </span>
+            <span className="flex flex-col gap-1.5">
+              <span
+                className={`h-0.5 w-5 rounded-full bg-current transition ${mobileMenuOpen ? "translate-y-2 rotate-45" : ""}`}
+              />
+              <span
+                className={`h-0.5 w-5 rounded-full bg-current transition ${mobileMenuOpen ? "opacity-0" : ""}`}
+              />
+              <span
+                className={`h-0.5 w-5 rounded-full bg-current transition ${mobileMenuOpen ? "-translate-y-2 -rotate-45" : ""}`}
+              />
+            </span>
+          </button>
+
+          {mobileMenuOpen ? (
+            <div className="absolute inset-x-0 top-[calc(100%+0.75rem)] rounded-[1.75rem] border border-white/10 bg-[#120f20]/95 p-3 shadow-2xl shadow-black/40 backdrop-blur md:hidden">
+              <div className="grid gap-1">
+                {navigationLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noreferrer" : undefined}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="rounded-2xl px-4 py-3 text-sm font-medium text-stone-200 transition hover:bg-white/8 hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </nav>
 
         <div className="mx-auto grid max-w-7xl gap-12 pb-24 pt-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:pb-32 lg:pt-28">
-          <div>
-            <p className="mb-5 inline-flex rounded-full border border-violet-200/20 bg-violet-200/8 px-4 py-2 text-sm text-violet-100">
-              Portfolio ilustrací a volné tvorby
-            </p>
-            <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-white sm:text-6xl lg:text-7xl">
+          <div className="fade-in-up relative z-10 max-w-xl">
+            <h1 className="text-5xl font-semibold tracking-[-0.06em] text-white sm:text-6xl lg:text-6xl xl:text-7xl">
               Wewa Čambor, portfolio ilustrací a volné tvorby.
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-stone-300">
+            <p className="mt-7 max-w-lg text-lg leading-8 text-stone-300">
               WewaCamborArt představuje autorskou ilustraci, fantasy knižní
               tvorbu, volnou malbu, kresbu a grafické techniky.
             </p>
@@ -466,11 +513,19 @@ export default function Home() {
               >
                 Instagram
               </a>
+              <a
+                href="https://www.etsy.com/shop/WewaCamborArt?ref=dashboard-header"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-white/15 px-6 py-3 text-center text-sm font-semibold text-white transition hover:border-amber-100/70 hover:bg-white/10"
+              >
+                Etsy
+              </a>
             </div>
           </div>
 
-          <div className="relative min-h-[620px]">
-            <div className="absolute left-0 top-12 h-80 w-56 rotate-[-9deg] overflow-hidden rounded-4xl border border-white/10 shadow-2xl shadow-violet-950/40">
+          <div className="relative mx-auto min-h-[620px] w-full max-w-[620px]">
+            <div className="float-soft absolute left-[-18px] top-12 h-80 w-56 overflow-hidden rounded-4xl border border-white/10 shadow-2xl shadow-violet-950/40 [--card-rotate:-9deg]">
               <Image
                 src={getWatermarkedSrc("/artworks/grafika/garden.jpeg")}
                 alt="Černobílý linoryt ženy v zahradě"
@@ -480,7 +535,7 @@ export default function Home() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute right-0 top-0 h-80 w-56 rotate-[8deg] overflow-hidden rounded-4xl border border-white/10 shadow-2xl shadow-black/45">
+            <div className="float-soft-delayed absolute left-[414px] top-0 h-80 w-56 overflow-hidden rounded-4xl border border-white/10 shadow-2xl shadow-black/45 [--card-rotate:8deg]">
               <Image
                 src={getWatermarkedSrc("/artworks/ilustrace/malyprinc.jpeg")}
                 alt="Ilustrace Malého prince"
@@ -490,7 +545,7 @@ export default function Home() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute bottom-0 left-1/2 h-[520px] w-[min(90vw,390px)] -translate-x-1/2 overflow-hidden rounded-[2.5rem] border border-amber-100/18 bg-[#12101d] p-3 shadow-2xl shadow-black/65">
+            <div className="hero-card-main absolute bottom-0 left-[115px] z-10 h-[520px] w-[390px] overflow-hidden rounded-[2.5rem] border border-amber-100/18 bg-[#12101d] p-3 shadow-2xl shadow-black/65">
               <div className="relative h-full overflow-hidden rounded-4xl">
                 <Image
                   src={getWatermarkedSrc(
@@ -505,13 +560,13 @@ export default function Home() {
                 <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/5 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6">
                   <p className="text-xs uppercase tracking-[0.3em] text-amber-100">
-                    V popředí
+                   
                   </p>
                   <p className="mt-3 text-3xl font-semibold text-white">
-                    SPAD
+                  
                   </p>
                   <p className="mt-2 text-sm leading-6 text-stone-300">
-                    Obálková ilustrace
+                    Obálková ilustrace - návrh
                   </p>
                 </div>
               </div>
@@ -547,7 +602,7 @@ export default function Home() {
         onOpen={openLightbox}
       />
 
-      <section id="o-autorce" className="px-6 py-24 sm:px-10 lg:px-16">
+      <section id="o-autorce" className="fade-in-up px-6 py-24 sm:px-10 lg:px-16">
         <div className="relative mx-auto grid max-w-7xl gap-10 overflow-hidden rounded-[2.5rem] border border-pink-100/14 bg-[radial-gradient(circle_at_16%_18%,rgba(217,70,239,0.18),transparent_34%),radial-gradient(circle_at_86%_18%,rgba(244,114,182,0.13),transparent_30%),linear-gradient(135deg,rgba(25,19,42,0.9),rgba(18,15,31,0.72),rgba(11,9,18,0.94))] p-8 shadow-2xl shadow-black/30 sm:p-12 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="absolute -left-24 top-20 h-64 w-64 rounded-full bg-fuchsia-500/12 blur-3xl" />
           <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-pink-400/10 blur-3xl" />
@@ -607,7 +662,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="kurzy" className="px-6 py-20 sm:px-10 lg:px-16">
+      <section id="kurzy" className="fade-in-up px-6 py-20 sm:px-10 lg:px-16">
         <div className="mx-auto grid max-w-7xl gap-8 rounded-[2.5rem] border border-violet-100/12 bg-[#14111f]/55 p-8 shadow-2xl shadow-black/28 sm:p-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <div>
             <p className="text-sm uppercase tracking-[0.35em] text-violet-100">
@@ -635,7 +690,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="px-6 pb-16 pt-10 sm:px-10 lg:px-16">
+      <section id="contact" className="fade-in-up px-6 pb-16 pt-10 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-7xl rounded-[2.5rem] border border-amber-100/12 bg-[linear-gradient(135deg,rgba(20,17,31,0.9),rgba(26,20,37,0.78),rgba(12,10,20,0.92))] p-8 text-center shadow-2xl shadow-black/35 sm:p-14">
           <p className="text-sm uppercase tracking-[0.35em] text-amber-100">
             Zakázky a spolupráce
@@ -662,6 +717,14 @@ export default function Home() {
               className="rounded-full border border-white/15 px-7 py-3 text-sm font-semibold text-white transition hover:border-amber-100/70 hover:bg-white/10"
             >
               Instagram
+            </a>
+            <a
+              href="https://www.etsy.com/shop/WewaCamborArt?ref=dashboard-header"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-white/15 px-7 py-3 text-sm font-semibold text-white transition hover:border-amber-100/70 hover:bg-white/10"
+            >
+              Etsy shop
             </a>
           </div>
         </div>
