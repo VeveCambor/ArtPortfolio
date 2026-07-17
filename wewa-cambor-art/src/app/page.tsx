@@ -449,8 +449,7 @@ export default function Home() {
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-stone-300">
               WewaCamborArt představuje autorskou ilustraci, fantasy knižní
-              tvorbu, volnou malbu, kresbu a grafické techniky. V popředí stojí
-              série SPAD a za ní galerie dalších prací.
+              tvorbu, volnou malbu, kresbu a grafické techniky.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a
