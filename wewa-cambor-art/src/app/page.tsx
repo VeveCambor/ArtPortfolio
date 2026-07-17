@@ -343,7 +343,7 @@ function GalleryLightbox({
   }, [onClose, onMove]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#050408]/92 px-4 py-6 backdrop-blur-xl">
+    <div className="fixed inset-0 z-300 flex items-center justify-center bg-[#050408]/92 px-4 py-6 backdrop-blur-xl">
       <button
         type="button"
         aria-label="Zavřít náhled"
@@ -420,85 +420,85 @@ export default function Home() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_50%_0%,rgba(79,70,229,0.16),transparent_28%),linear-gradient(180deg,#090812_0%,#0d0b18_34%,#090812_68%,#06050a_100%)] text-stone-100">
+      <nav className="fade-in-up fixed left-6 right-6 top-4 z-200 mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/15 bg-[#080711]/95 px-5 py-4 shadow-2xl shadow-black/60 backdrop-blur-xl">
+        <a
+          href="#"
+          className="text-sm font-semibold uppercase tracking-[0.35em] text-stone-200"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          Wewa Čambor
+        </a>
+        <div className="hidden items-center gap-6 text-sm text-stone-300 md:flex">
+          {navigationLinks.map((link) => (
+            <a
+              key={link.href}
+              className="transition hover:text-white"
+              href={link.href}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noreferrer" : undefined}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+        <button
+          type="button"
+          aria-label={mobileMenuOpen ? "Zavřít menu" : "Otevřít menu"}
+          aria-expanded={mobileMenuOpen}
+          onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
+          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-white/10 text-stone-100 transition hover:bg-white/16 md:hidden"
+        >
+          <span className="sr-only">
+            {mobileMenuOpen ? "Zavřít menu" : "Otevřít menu"}
+          </span>
+          <span className="flex flex-col gap-1.5">
+            <span
+              className={`h-0.5 w-5 rounded-full bg-current transition ${mobileMenuOpen ? "translate-y-2 rotate-45" : ""}`}
+            />
+            <span
+              className={`h-0.5 w-5 rounded-full bg-current transition ${mobileMenuOpen ? "opacity-0" : ""}`}
+            />
+            <span
+              className={`h-0.5 w-5 rounded-full bg-current transition ${mobileMenuOpen ? "-translate-y-2 -rotate-45" : ""}`}
+            />
+          </span>
+        </button>
+
+        {mobileMenuOpen ? (
+          <div className="absolute inset-x-0 top-[calc(100%+0.75rem)] rounded-[1.75rem] border border-white/12 bg-[#080711]/98 p-3 shadow-2xl shadow-black/60 backdrop-blur-xl md:hidden">
+            <div className="grid gap-1">
+              {navigationLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noreferrer" : undefined}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="rounded-2xl px-4 py-3 text-sm font-medium text-stone-200 transition hover:bg-white/8 hover:text-white"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </nav>
+
       <section className="relative isolate px-6 py-8 sm:px-10 lg:px-16">
         <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_18%,rgba(124,58,237,0.2),transparent_34%),radial-gradient(circle_at_82%_8%,rgba(180,83,9,0.1),transparent_30%),linear-gradient(135deg,rgba(9,8,18,0.95)_0%,rgba(18,15,32,0.92)_48%,rgba(8,7,13,0.98)_100%)]" />
         <div className="absolute left-1/2 top-20 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-violet-500/12 blur-3xl" />
         <div className="absolute bottom-10 right-8 -z-10 h-80 w-80 rounded-full bg-amber-500/8 blur-3xl" />
 
-        <nav className="fade-in-up relative z-30 mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-[#120f20]/55 px-5 py-4 shadow-2xl shadow-black/30 backdrop-blur">
-          <a
-            href="#"
-            className="text-sm font-semibold uppercase tracking-[0.35em] text-stone-200"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Wewa Čambor
-          </a>
-          <div className="hidden items-center gap-6 text-sm text-stone-300 md:flex">
-            {navigationLinks.map((link) => (
-              <a
-                key={link.href}
-                className="transition hover:text-white"
-                href={link.href}
-                target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noreferrer" : undefined}
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-          <button
-            type="button"
-            aria-label={mobileMenuOpen ? "Zavřít menu" : "Otevřít menu"}
-            aria-expanded={mobileMenuOpen}
-            onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
-            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/12 bg-white/8 text-stone-100 transition hover:bg-white/14 md:hidden"
-          >
-            <span className="sr-only">
-              {mobileMenuOpen ? "Zavřít menu" : "Otevřít menu"}
-            </span>
-            <span className="flex flex-col gap-1.5">
-              <span
-                className={`h-0.5 w-5 rounded-full bg-current transition ${mobileMenuOpen ? "translate-y-2 rotate-45" : ""}`}
-              />
-              <span
-                className={`h-0.5 w-5 rounded-full bg-current transition ${mobileMenuOpen ? "opacity-0" : ""}`}
-              />
-              <span
-                className={`h-0.5 w-5 rounded-full bg-current transition ${mobileMenuOpen ? "-translate-y-2 -rotate-45" : ""}`}
-              />
-            </span>
-          </button>
-
-          {mobileMenuOpen ? (
-            <div className="absolute inset-x-0 top-[calc(100%+0.75rem)] rounded-[1.75rem] border border-white/10 bg-[#120f20]/95 p-3 shadow-2xl shadow-black/40 backdrop-blur md:hidden">
-              <div className="grid gap-1">
-                {navigationLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target={link.external ? "_blank" : undefined}
-                    rel={link.external ? "noreferrer" : undefined}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="rounded-2xl px-4 py-3 text-sm font-medium text-stone-200 transition hover:bg-white/8 hover:text-white"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          ) : null}
-        </nav>
-
-        <div className="mx-auto grid max-w-7xl gap-12 pb-24 pt-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:pb-32 lg:pt-28">
-          <div className="fade-in-up relative z-10 max-w-xl">
-            <h1 className="text-5xl font-semibold tracking-[-0.06em] text-white sm:text-6xl lg:text-6xl xl:text-7xl">
+        <div className="mx-auto grid max-w-7xl gap-10 pb-20 pt-16 sm:pt-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-12 lg:pb-32 lg:pt-28">
+          <div className="fade-in-up relative z-10 max-w-xl text-center sm:text-left">
+            <h1 className="text-4xl font-semibold tracking-[-0.06em] text-white sm:text-6xl lg:text-6xl xl:text-7xl">
               Wewa Čambor, portfolio ilustrací a volné tvorby.
             </h1>
-            <p className="mt-7 max-w-lg text-lg leading-8 text-stone-300">
+            <p className="mx-auto mt-6 max-w-lg text-base leading-7 text-stone-300 sm:mx-0 sm:mt-7 sm:text-lg sm:leading-8">
               WewaCamborArt představuje autorskou ilustraci, fantasy knižní
               tvorbu, volnou malbu, kresbu a grafické techniky.
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
               <a
                 href="#ilustrace"
                 className="rounded-full bg-stone-100 px-6 py-3 text-center text-sm font-semibold text-[#08070d] transition hover:bg-violet-100"
@@ -524,8 +524,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mx-auto min-h-[620px] w-full max-w-[620px]">
-            <div className="float-soft absolute left-[-18px] top-12 h-80 w-56 overflow-hidden rounded-4xl border border-white/10 shadow-2xl shadow-violet-950/40 [--card-rotate:-9deg]">
+          <div className="relative mx-auto min-h-[430px] w-full max-w-[360px] sm:min-h-[620px] sm:max-w-[620px]">
+            <div className="float-soft absolute left-0 top-12 h-52 w-36 overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-violet-950/40 [--card-rotate:-9deg] sm:left-[-18px] sm:h-80 sm:w-56 sm:rounded-4xl">
               <Image
                 src={getWatermarkedSrc("/artworks/grafika/garden.jpeg")}
                 alt="Černobílý linoryt ženy v zahradě"
@@ -535,7 +535,7 @@ export default function Home() {
                 className="object-cover"
               />
             </div>
-            <div className="float-soft-delayed absolute left-[414px] top-0 h-80 w-56 overflow-hidden rounded-4xl border border-white/10 shadow-2xl shadow-black/45 [--card-rotate:8deg]">
+            <div className="float-soft-delayed absolute right-0 top-2 h-52 w-36 overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black/45 [--card-rotate:8deg] sm:left-[414px] sm:right-auto sm:top-0 sm:h-80 sm:w-56 sm:rounded-4xl">
               <Image
                 src={getWatermarkedSrc("/artworks/ilustrace/malyprinc.jpeg")}
                 alt="Ilustrace Malého prince"
@@ -545,7 +545,7 @@ export default function Home() {
                 className="object-cover"
               />
             </div>
-            <div className="hero-card-main absolute bottom-0 left-[115px] z-10 h-[520px] w-[390px] overflow-hidden rounded-[2.5rem] border border-amber-100/18 bg-[#12101d] p-3 shadow-2xl shadow-black/65">
+            <div className="hero-card-main absolute bottom-0 left-[calc(50%-135px)] z-10 h-[360px] w-[270px] overflow-hidden rounded-4xl border border-amber-100/18 bg-[#12101d] p-2.5 shadow-2xl shadow-black/65 sm:left-[115px] sm:h-[520px] sm:w-[390px] sm:rounded-[2.5rem] sm:p-3">
               <div className="relative h-full overflow-hidden rounded-4xl">
                 <Image
                   src={getWatermarkedSrc(

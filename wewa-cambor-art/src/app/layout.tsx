@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "Wewa Čambor | Portfolio ilustrací a volné tvorby",
   description:
     "Portfolio ilustrací, fantasy knižní tvorby, volné tvorby, hlubotisku, linorytu, grafiky a autorského profilu Wewy Čambor.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
