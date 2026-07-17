@@ -511,7 +511,7 @@ export default function Home() {
                     SPAD
                   </p>
                   <p className="mt-2 text-sm leading-6 text-stone-300">
-                    Obálková ilustrace a proces jako hlavní vstup do portfolia.
+                    Obálková ilustrace
                   </p>
                 </div>
               </div>
