@@ -65,9 +65,9 @@ const illustrationWorks: Artwork[] = [
     format: "Creature design",
   },
   {
-    title: "Púštny Boss",
+    title: "Pouštní boss",
     src: "/artworks/ilustrace/PustnyBoss.png",
-    alt: "Fantasy boss z pustiny",
+    alt: "Fantasy boss z pouště",
     format: "Creature design",
   },
   {
