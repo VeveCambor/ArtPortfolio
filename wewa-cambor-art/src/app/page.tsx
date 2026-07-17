@@ -40,9 +40,9 @@ const illustrationWorks: Artwork[] = [
     format: "Proces",
   },
   {
-    title: "Mapa světa Kehre",
+    title: "Mapa světa ke stolní hře",
     src: "/artworks/ilustrace/mapakehre.png",
-    alt: "Barevná fantasy mapa světa Kehre",
+    alt: "Barevná fantasy mapa světa ke stolní hře",
     format: "Fantasy mapa",
     className: "md:col-span-2",
   },
